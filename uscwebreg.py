@@ -9,7 +9,7 @@ import urllib.request as urlRequest
 import urllib.parse as urlParse
 #####from http.cookiejar import CookieJar
 
-url = "http://www.cwtv.com/shows/riverdale/"
+url = "https://classes.usc.edu/term-20181/classes/gesm"
 # pretend to be a chrome 47 browser on a windows 10 machine
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"}
 req = urlRequest.Request(url, headers = headers)
@@ -23,7 +23,7 @@ x = urlRequest.urlopen(req)
 # get the source code
 allTheHTML = BeautifulSoup(x, 'html.parser')
 ##sourceCode = x.read()
-name_box = allTheHTML.find('title')
+name_box = allTheHTML.find('tr', attrs={'class': '35354 secondline odd'})
 name = name_box.text.strip()
 name = name.encode("utf-8")
 print (name)
@@ -37,7 +37,7 @@ client = Client(account_sid, auth_token)
 while 1:
     newX = urlRequest.urlopen(req)
     newAllTheHTML = BeautifulSoup(newX, 'html.parser')
-    new_name_box = newAllTheHTML.find('title')
+    new_name_box = newAllTheHTML.find('tr', attrs={'class': '35354 secondline odd'})
     newName = new_name_box.text.strip()
     newName = newName.encode("utf-8")
     print (newName)
