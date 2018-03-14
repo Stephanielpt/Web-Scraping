@@ -1,33 +1,18 @@
-
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 from twilio.rest import Client #SMS API Package
-import re
 import time
-import urllib.request as urlRequest
-import urllib.parse as urlParse
 
-import requests
-s = requests.session()
-
-### Here, we're getting the login page and then grabbing hidden form
-### fields.  We're probably also getting several session cookies too.
-login = s.get('https://www.yelp.com/login')
-login_html = lxml.html.fromstring(login.text)
-hidden_inputs = login_html.xpath(r'//form//input[@type="hidden"]')
-form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
-print(form)
-{'csrftok': '9e34ca7e492a0dda743369433e78ccf10c1e68bbb1f453cbb80ce6eaeeebe928', 
- 'context': ''}
+###TWILIO STUFF
+account_sid = "AC3c602a60289e0d8b78c843ab743090e1" #Your Twilio account ID
+auth_token = "70a0b92d0cf1d2478dfc5e1c376ed0ec"    #Your secret API Token
  
-### Now that we have the hidden form fields, let's add in our 
-### username and password.
-form['stephanielampotang@gmail.com']
-form['november15'] 
-response = s.post('https://www.yelp.com/login', data=form)
-
-### How can we tell that we logged in?  Well, these worked for me:
-print (response.url)
-
-print('Stephen' in response.text)
-
+client = Client(account_sid, auth_token)
+gotatext = True
+while 1:
+    if gotatext:
+       gotatext = True
+    if gotatext:
+       msg = client.messages.create(to="3528704348", from_="3524152946", body="Update! Here you go:http://highbrow.com") #Will send SMS to your phone number
+       print ("SMS Sent Thanks")
+       
+       time.sleep(20) #sleep for 20sec : 2 hours
+       gotatext = False
