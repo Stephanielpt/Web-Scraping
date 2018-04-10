@@ -9,7 +9,7 @@ import urllib.request as urlRequest
 import urllib.parse as urlParse
 #####from http.cookiejar import CookieJar
 
-url = "https://classes.usc.edu/term-20181/classes/gesm"
+url = "http://classes.usc.edu/term-20183/classes/thtr"
 # pretend to be a chrome 47 browser on a windows 10 machine
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"}
 req = urlRequest.Request(url, headers = headers)
@@ -23,7 +23,7 @@ x = urlRequest.urlopen(req)
 # get the source code
 allTheHTML = BeautifulSoup(x, 'html.parser')
 ##sourceCode = x.read()
-name_box = allTheHTML.find('tr', attrs={'class': '35354 secondline odd'})
+name_box = allTheHTML.find('tr', attrs={'class': '62633 even'})
 name = name_box.text.strip()
 name = name.encode("utf-8")
 print (name)
@@ -37,12 +37,12 @@ client = Client(account_sid, auth_token)
 while 1:
     newX = urlRequest.urlopen(req)
     newAllTheHTML = BeautifulSoup(newX, 'html.parser')
-    new_name_box = newAllTheHTML.find('tr', attrs={'class': '35354 secondline odd'})
+    new_name_box = newAllTheHTML.find('tr', attrs={'class': '62633 even'})
     newName = new_name_box.text.strip()
     newName = newName.encode("utf-8")
     print (newName)
     if newName != name: 
-       msg = client.messages.create(to="3528704348", from_="3525058303", body="IT'S UP! IT'S UP!!! IT IS HEREEEE") #Will send SMS to your phone number
+       msg = client.messages.create(to="3528704348", from_="3525058303", body="IT'S UP! IT'S UP!!! IT IS OPENNNN") #Will send SMS to your phone number
        print ("SMS Sent Thanks")
        name = newName
        quit()
